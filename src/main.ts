@@ -1,16 +1,18 @@
 import { Plugin, WorkspaceLeaf } from 'obsidian';
-import { ExampleView, VIEW_TYPE_EXAMPLE } from 'view.js';
+import { ExampleView, VIEW_TYPE_EXAMPLE } from './view/view.js';
+
+// import { CREATE_NOTE, CreateNoteView } from './view/CreateNote';
 
 export default class ExamplePlugin extends Plugin {
   async onload() {
-    this.registerView(
-      VIEW_TYPE_EXAMPLE,
-      (leaf) => new ExampleView(leaf)
-    );
+    this.registerView(VIEW_TYPE_EXAMPLE, (leaf) => new ExampleView(leaf));
 
     this.addRibbonIcon('dice', 'Activate view', () => {
       this.activateView();
     });
+
+
+    // this.registerView(CREATE_NOTE, leaf => new CreateNoteView(leaf, this.settings, localeMap[locale]));
   }
 
   async onunload() {
